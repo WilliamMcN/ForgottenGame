@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
  *
  * @author williammc
  */
+//this class here is what creates the monsterClass for the game
 public class Monsters {
     private String monsterName;
     private int monsterHeath, monsterAttack, monsterLevel, monsterExp;

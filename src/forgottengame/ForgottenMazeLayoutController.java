@@ -202,6 +202,7 @@ public class ForgottenMazeLayoutController implements Initializable {
     //To make sure the user cant select more then one class
     private ToggleGroup classButtonToggle;
     
+    //this method picks what the starting stats are and the in game character stories
     public void radioButtonChanged(){
         if (classButtonToggle.getSelectedToggle().equals(AssassinRadioButton))
         {
@@ -333,27 +334,31 @@ public class ForgottenMazeLayoutController implements Initializable {
         BerskerRadioButton.setVisible(false);
         StoryChatText.setVisible(false);
         
-        
+        //chat texts in the game
         CombatChatText.setVisible(true);
         MainChatText.setVisible(true);
         
+        //player labels
         PlayerHeathMainLabel.setVisible(true);
         PlayerAttackMainLabel.setVisible(true);
         PlayerAmourMainLabel.setVisible(true);
         PlayerCoinsMainLabel.setVisible(true);
         PlayerLevelMainLabel.setVisible(true);
         
+        //player labels that change
         PlayerHeathLabel.setVisible(true);
         PlayerAttackLabel.setVisible(true);
         PlayerCoinsLabel.setVisible(true);
         PlayerLevelLabel.setVisible(true);
         PlayerAmourLabel.setVisible(true);
         
+        //all of the buttons beside begin
          AttackButton.setVisible(true);
          DefendButton.setVisible(true);
          RunButton.setVisible(true);
          LeaveButton.setVisible(true);
          
+         //floor levels
          FloorMainLabel.setVisible(true);
          FloorLabel.setVisible(true);
         
@@ -370,6 +375,7 @@ public class ForgottenMazeLayoutController implements Initializable {
         RunGame();
     }
    public void RunGame(){
+       //this is the main run game method
        int incounter = DiceRoll(4);
        String playerLevelString = String.format("%d", playerLevel );
        PlayerLevelLabel.setText(playerLevelString);
@@ -397,6 +403,7 @@ public class ForgottenMazeLayoutController implements Initializable {
        if (incounter == 1)
        
        {
+           //sets all of the labels for the shop 
             shop = true;
             AttackButton.setVisible(true);
             DefendButton.setVisible(true);
@@ -460,7 +467,7 @@ public class ForgottenMazeLayoutController implements Initializable {
        }
       
   }
-    
+    //a button for attacking for buying from npc
     public void AttackButtonPushed() throws FileNotFoundException{
         
         if (shop == false)
@@ -546,6 +553,7 @@ public class ForgottenMazeLayoutController implements Initializable {
                 
         }
     }
+    //a button in the game to either buy or defend from npc depending on interaction
     public void DefendButtonPushed() throws FileNotFoundException{
         if (shop == false)
         {
@@ -676,6 +684,7 @@ public class ForgottenMazeLayoutController implements Initializable {
             
         }
     }
+    //a button in the game to either buy or run away from npc depending on interaction
     public void RunButtonPushed() throws FileNotFoundException{
     if (shop == false)
     {
@@ -766,6 +775,7 @@ public class ForgottenMazeLayoutController implements Initializable {
             
         }
     }
+    //a button in the game to leave the store
     public void LeaveButtonPushed(){
         if (shop == true)
         {
@@ -773,12 +783,12 @@ public class ForgottenMazeLayoutController implements Initializable {
         }
         
     }
-    
+    //the diceroll is are random picker.
     public int DiceRoll(int rollDice){
        int  randomDice = rand.nextInt(rollDice) + 1;
        return randomDice;
 }
-    
+    //this method spawns a new monster and gives the game the right attack level name and interaction
      private void spawnMonster() {
         int spawnAMonster = DiceRoll(100);
         if (spawnAMonster <= 20)
@@ -862,6 +872,8 @@ public class ForgottenMazeLayoutController implements Initializable {
        
         
     }
+     //this loottable method is the method for the monsters drops 
+     //the drop rate is out of 100 
      private void LootTable(int monsterCode)
      {
          int lootPicker = DiceRoll(100);
@@ -1088,6 +1100,7 @@ public class ForgottenMazeLayoutController implements Initializable {
           RunGame();
          
      }
+     //all of the shops in the game 1-6 each with differnt items and interactions
      private void BlackMarket() {
         shopType = 6;
         ShopButtonOneLabel.setText(superPots.getItemName());
@@ -1181,7 +1194,7 @@ public class ForgottenMazeLayoutController implements Initializable {
              MainChatText.setText(mainChat);
         NpcImage.setImage(chestImage);
      }
-     
+     //this method is checks the price of the item and then adds the items bonus if the user has the money
      private void CheckPrice(int priceOfItem, int itemType, int itemBonus){
          if (priceOfItem <= playerCoins)
          {
@@ -1201,6 +1214,7 @@ public class ForgottenMazeLayoutController implements Initializable {
                  playerHeath = playerHeath + itemBonus;
                  intialPlayerHeath = intialPlayerHeath + itemBonus;
              }
+        //sets the new text.
         String playerAttackString = String.format("%d", playerAttack );
         String playerCoinsString = String.format("%d", playerCoins );
         String playerArmourString = String.format("%d", playerArmour );
@@ -1216,11 +1230,13 @@ public class ForgottenMazeLayoutController implements Initializable {
          }
          else 
          {
+             //this tells the user that the item he is buying is to much
              mainChat = mainChat + "You dont have the right amount" + System.lineSeparator();
              MainChatText.setText(mainChat);
          }
          
      }
+     // on death everything goes invisible to show the game is done.
      private void Death() throws FileNotFoundException{
         CombatChatText.setVisible(false);
         MainChatText.setVisible(false);
@@ -1256,6 +1272,7 @@ public class ForgottenMazeLayoutController implements Initializable {
          MonsterHeathMainLabel.setVisible(false);
          scoreBoard();
      }
+     //there is a leveling system this will add exp to the players exp bar
      private void LevelUp(int Exp){
          LevelUp = LevelUp + Exp;
          System.out.print("Your Total Exp is " + LevelUp);
@@ -1273,6 +1290,7 @@ public class ForgottenMazeLayoutController implements Initializable {
          LootTable(monsterLevel);
                  
          }
+     //prints the scoreboard to a docx 
          public void scoreBoard() throws FileNotFoundException {
 
             Formatter score = new Formatter("ScoreBoard.docx");

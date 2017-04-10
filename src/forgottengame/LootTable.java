@@ -9,6 +9,7 @@ package forgottengame;
  *
  * @author williammc
  */
+//creates a loottable for the monsters in the game to drop
 public class LootTable {
     private String lootName;
     private int lootBonus, lootType, lootCode;

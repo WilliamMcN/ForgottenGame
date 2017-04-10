@@ -9,6 +9,7 @@ package forgottengame;
  *
  * @author williammc
  */
+//this class here is what creates the shopItems
 public class MarketTypes {
     private String itemName;
     private int priceOfItem, itemStatBonus, bonusType;

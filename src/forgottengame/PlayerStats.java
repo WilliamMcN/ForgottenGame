@@ -11,6 +11,7 @@ package forgottengame;
  *
  * @author williammc
  */
+//player stats in the game there are many classes to choose from in the game
 public class PlayerStats {
     private String playerName;
     private int playerCoins, playerAttack, playerAmour;
