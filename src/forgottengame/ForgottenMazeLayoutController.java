@@ -361,6 +361,8 @@ public class ForgottenMazeLayoutController implements Initializable {
          //floor levels
          FloorMainLabel.setVisible(true);
          FloorLabel.setVisible(true);
+         
+         NpcImage.setVisible(true);
         
         String playerAttackString = String.format("%d", playerAttack );
         String playerCoinsString = String.format("%d", playerCoins );
